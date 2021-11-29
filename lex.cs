@@ -44,7 +44,7 @@ public class ExpressionParser {
     /**
      * Represents a node in a parse tree. 
      * - Should keep track of the 'text' of the node (the substring under the node)
-     * - Should keep track of the line and column where the node begins. 
+     * - Should keep track of the line and column when the node begins. 
      * - Should keep track of the children of the node in the parse tree
      * - should keep track of the Symbol (see the enum) corresponding to the node
      * - Tokens are leaf nodes (the array of children should be null)
@@ -79,7 +79,7 @@ public class ExpressionParser {
         int next = 0;
         bool consume = true;
 
-        // Symbol is ttypes[state] where we find the token
+        // Symbol is ttypes[state] when we find the token
         Symbol[] ttypes = {Symbol.WS,           //0
                            Symbol.REAL,         //1
                            Symbol.REAL,         //2
@@ -125,13 +125,13 @@ public class ExpressionParser {
                         case ')':
                             next = 11;
                             break;
-                        case char cc where Char.IsDigit(cc):
+                        case char cc when Char.IsDigit(cc):
                             next = 1;
                             break;
-                        case char cc where Char.IsLetter(cc):
+                        case char cc when Char.IsLetter(cc):
                             next = 9;
                             break;
-                        case char cc where Char.IsWhiteSpace(cc):
+                        case char cc when Char.IsWhiteSpace(cc):
                             next = 0;
                             break;
                         default:
@@ -145,7 +145,7 @@ public class ExpressionParser {
                         case '.':
                             next = 2;
                             break;
-                        case char cc where Char.IsDigit(cc):
+                        case char cc when Char.IsDigit(cc):
                             next = 1;
                             break;
                         default:
@@ -158,7 +158,7 @@ public class ExpressionParser {
                 case 2: 
                     switch (c)
                     {
-                        case char cc where Char.IsDigit(cc):
+                        case char cc when Char.IsDigit(cc):
                             next = 2;
                             break;
                         default:
@@ -169,22 +169,10 @@ public class ExpressionParser {
                     break;
 
                 case 3: 
-                    switch (c)
-                    {
-                        case char cc where Char.IsDigit(cc):
-                            next = 1;
-                            break;
-                        default:
-                            next = 0;
-                            consume = false;
-                            break;
-                    }
-                    break;
-            
                 case 4: 
                     switch (c)
                     {
-                        case char cc where Char.IsDigit(cc):
+                        case char cc when Char.IsDigit(cc):
                             next = 1;
                             break;
                         default:
@@ -193,7 +181,6 @@ public class ExpressionParser {
                             break;
                     }
                     break;
-
                 case 5: 
                     switch (c)
                     {
@@ -206,19 +193,17 @@ public class ExpressionParser {
                             break;
                     }
                     break;
-
                 case 6: case 7: case 8: case 10: case 11:
                     next = 0;
                     consume = false;
                     break;
-
                 case 9: 
                     switch (c)
                     {
-                        case char cc where Char.IsDigit(cc):
+                        case char cc when Char.IsDigit(cc):
                             next = 9;
                             break;
-                        case char cc where Char.IsLetter(cc):
+                        case char cc when Char.IsLetter(cc):
                             next = 9;
                             break;
                         default:
