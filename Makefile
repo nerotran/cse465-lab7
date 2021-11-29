@@ -11,7 +11,7 @@ example1.output: lex.exe example1.input
 	mono lex.exe < example1.input >example1.output
 
 lex.exe: lex.cs
-	ccs lex.cs
+	csc lex.cs
 
 
 submit: check
