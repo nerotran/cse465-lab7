@@ -135,7 +135,7 @@ public class ExpressionParser {
                             next = 0;
                             break;
                         default:
-                            throw new LexicalErrorException($"Invalid character '{c}' at line {line} column {column}")
+                            throw new LexicalErrorException($"Invalid character '{c}' at line {line} column {column}");
                     }
                     break;
 
