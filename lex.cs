@@ -125,6 +125,15 @@ public class ExpressionParser {
                         case ')':
                             next = 11;
                             break;
+                        case char cc when Char.IsDigit(cc):
+                            next = 1;
+                            break;
+                        case char cc when Char.IsLetter(cc):
+                            next = 9;
+                            break;
+                        case char cc when Char.IsWhiteSpace(cc):
+                            next = 0;
+                            break;
                         default:
                             throw new LexicalErrorException($"Invalid character '{c}' at line {line} column {column}");
                     }
@@ -136,6 +145,9 @@ public class ExpressionParser {
                         case '.':
                             next = 2;
                             break;
+                        case char cc when Char.IsDigit(cc):
+                            next = 1;
+                            break;
                         default:
                             next = 0;
                             consume = false;
@@ -146,6 +158,9 @@ public class ExpressionParser {
                 case 2: 
                     switch (c)
                     {
+                        case char cc when Char.IsDigit(cc):
+                            next = 2;
+                            break;
                         default:
                             next = 0;
                             consume = false;
@@ -157,6 +172,9 @@ public class ExpressionParser {
                 case 4: 
                     switch (c)
                     {
+                        case char cc when Char.IsDigit(cc):
+                            next = 1;
+                            break;
                         default:
                             next = 0;
                             consume = false;
@@ -182,6 +200,12 @@ public class ExpressionParser {
                 case 9: 
                     switch (c)
                     {
+                        case char cc when Char.IsDigit(cc):
+                            next = 9;
+                            break;
+                        case char cc when Char.IsLetter(cc):
+                            next = 9;
+                            break;
                         default:
                             next = 0;
                             consume = false;
