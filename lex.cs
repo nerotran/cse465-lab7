@@ -204,7 +204,7 @@ public class ExpressionParser {
             }
 
             // Update the line counter
-            if (c == "\n") {
+            if (c == '\n') {
                 line += 1;
                 column = 1;
             }
